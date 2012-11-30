@@ -8,6 +8,7 @@ Features
 
 * Utiliza o novo Webservice dos Correios;
 * Portada para novas versões do Prestashop (1.4);
+* Sistema de rastreio embutido;
 
 Requisitos
 ----------

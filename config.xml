@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>correios</name>
+	<displayName><![CDATA[Frete Correios]]></displayName>
+	<version><![CDATA[3.0]]></version>
+	<description><![CDATA[Painel de Controle dos Frete Correios.]]></description>
+	<author><![CDATA[Dlani Mendes]]></author>
+	<tab><![CDATA[shipping_logistics]]></tab>
+	<is_configurable>1</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries>br</limited_countries>
+</module>

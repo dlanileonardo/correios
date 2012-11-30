@@ -18,4 +18,4 @@ Requisitos
 Dicas
 -----
 
-> Antes de instalar dê permissões de escrita na pasta de imagens
+> Antes de instalar dê permissão de escrita na pasta de imagens

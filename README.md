@@ -20,3 +20,9 @@ Dicas
 -----
 
 > Antes de instalar dê permissão de escrita na pasta de imagens
+
+Observação Importante
+---------------------
+
+> Ao fazer o download o github adiciona prefixo ou sufixos ao nome do arquivo zip ou tar.gz.
+> Logo que você baixar o arquivo renomeie-o para correios.zip ou correios.tar.gz

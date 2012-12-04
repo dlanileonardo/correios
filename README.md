@@ -10,7 +10,7 @@ Features
 * Portada para novas versões do Prestashop (1.4);
 * Sistema de rastreio embutido;
 * Cache dos Requests para acelerar o carregamento;
-* Exibe o Prazo de Entrega da transportadora selecionada.
+* Exibe o Prazo de Entrega do serviço selecionado.
 
 Requisitos
 ----------
@@ -28,3 +28,10 @@ Observação Importante
 
 > Ao fazer o download o github adiciona um prefixo ou sufixo ao nome do arquivo zip ou tar.gz.
 > Logo que você baixar o arquivo renomeie-o para correios.zip ou correios.tar.gz
+
+Isenção de Responsabilidade
+---------------------------
+
+Este software é gratuito e não está associado com os Correios. 
+Correios é uma empresa e esse módulo é independente não afiliado com a mesma portanto não é 
+um produto oficial.

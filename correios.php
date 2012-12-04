@@ -215,7 +215,7 @@ class correios extends CarrierModule {
     }
 
     public function hookextraCarrier($params) {
-
+        
     }
 
     private function getPriceWebService($params) {
@@ -250,7 +250,7 @@ class correios extends CarrierModule {
             $result = $client->CalcPreco($params);
             $this->setCache($hash, $result);
         }
-        
+
         if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
             $this->setCache($hash, false);
             return false;

@@ -9,6 +9,8 @@ Features
 * Utiliza o novo Webservice dos Correios;
 * Portada para novas versões do Prestashop (1.4);
 * Sistema de rastreio embutido;
+* Cache dos Requests para acelerar o carregamento;
+* Exibe o Prazo de Entrega da transportadora selecionada.
 
 Requisitos
 ----------

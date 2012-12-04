@@ -1,7 +1,6 @@
 <?php
 
-/**
- *   MODULO ADAPTADO POR ODLANIER
+/** MODULO ADAPTADO POR ODLANIER
  * @author Odlanier de Souza Mendes
  * @copyright Dlani
  * @email mrdlani@live.com
@@ -13,6 +12,7 @@ if (!defined('_PS_VERSION_'))
 class correios extends CarrierModule {
 
     public $id_carrier;
+    private $_urlWebservice = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?wsdl";
     private $_html = '';
     private $_postErrors = array();
     public $servicos_todos = array(
@@ -43,7 +43,10 @@ class correios extends CarrierModule {
     }
 
     function install() {
-        if (parent::install() == false or $this->registerHook('updateCarrier') == false)
+        if (parent::install() == false or
+                $this->registerHook('updateCarrier') == false or
+                $this->registerHook('extraCarrier') == false or
+                $this->registerHook('beforeCarrier') == false)
             return false;
 
         $this->installCarriers();
@@ -132,7 +135,7 @@ class correios extends CarrierModule {
             Configuration::updateValue("PS_CORREIOS_CARRIER_{$carrier->id}", $config['cod_servico']);
 
             // Copy Logo
-            if (!copy(dirname(__FILE__) . '/logos_servicos/' . $config['cod_servico'] . '.jpg', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
+            if (!copy(dirname(__FILE__) . '/logos/' . $config['cod_servico'] . '.png', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
                 return false;
 
             // Return ID Carrier
@@ -202,9 +205,22 @@ class correios extends CarrierModule {
         
     }
 
+    public function hookbeforeCarrier($params) {
+        global $smarty;
+        $address = new Address($params['cart']->id_address_delivery);
+        $smarty->assign(array(
+            "sCepDestino" => $address->postcode
+        ));
+        return $this->display(__file__, 'extra_carrier.tpl');
+    }
+
+    public function hookextraCarrier($params) {
+
+    }
+
     private function getPriceWebService($params) {
         try {
-            $client = new SoapClient("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?wsdl");
+            $client = new SoapClient($this->_urlWebservice);
         } catch (Exception $e) {
             return false;
         }
@@ -214,21 +230,70 @@ class correios extends CarrierModule {
             "sDsSenha" => "",
             "sCepOrigem" => str_pad(Configuration::get('PS_CORREIOS_CEP_ORIG'), 8, "0", STR_PAD_LEFT),
             "nCdFormato" => "1",
-            "nVlComprimento" => "50",
-            "nVlAltura" => "50",
-            "nVlLargura" => "50",
-            "nVlDiametro" => "50",
+            "nVlComprimento" => "30",
+            "nVlAltura" => "8",
+            "nVlLargura" => "30",
+            "nVlDiametro" => "0",
             "sCdMaoPropria" => "N",
             "nVlValorDeclarado" => "0",
             "sCdAvisoRecebimento" => "N"
         );
         $params = array_merge($paramsBase, $params);
-        $result = $client->CalcPreco($params);
 
-        if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0)
+        $hash = ( implode("|", $params) );
+
+        $getInCache = $this->getCache($hash);
+
+        if ($getInCache) {
+            $result = $getInCache;
+        } else {
+            $result = $client->CalcPreco($params);
+            $this->setCache($hash, $result);
+        }
+        
+        if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
+            $this->setCache($hash, false);
             return false;
+        }
         else
             return (float) str_replace(",", ".", $result->CalcPrecoResult->Servicos->cServico->Valor);
+    }
+
+    public function getPrazoDeEntrega($idCarrier, $sCepDestino) {
+        global $smarty;
+        $Carrier = new Carrier($idCarrier);
+
+        $params = array(
+            "sCepOrigem" => str_pad(Configuration::get('PS_CORREIOS_CEP_ORIG'), 8, "0", STR_PAD_LEFT),
+            "nCdServico" => Configuration::get("PS_CORREIOS_CARRIER_{$idCarrier}"),
+            "sCepDestino" => $sCepDestino,
+        );
+
+        try {
+            $client = new SoapClient($this->_urlWebservice);
+            $result = $client->CalcPrazo($params);
+            $dias = (integer) $result->CalcPrazoResult->Servicos->cServico->PrazoEntrega;
+        } catch (Exception $e) {
+            $dias = false;
+        }
+
+        $smarty->assign(array(
+            "nomeServico" => $Carrier->name,
+            "dias" => $dias
+        ));
+
+        return $this->display(__file__, 'prazo_de_entrega.tpl');
+    }
+
+    private function setCache($name, $value) {
+        if (_PS_CACHE_ENABLED_)
+            Cache::getInstance()->setQuery($name, $value);
+    }
+
+    private function getCache($name) {
+        if (_PS_CACHE_ENABLED_)
+            return Cache::getInstance()->get(md5($name));
+        return false;
     }
 
 }

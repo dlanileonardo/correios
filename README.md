@@ -1,7 +1,7 @@
 Módulo Correios
 ===============
 
-Módulo Prestashop para calculo de Frete pelos Correios. (Open Source)
+Módulo Prestashop para calculo de Frete pelos Correios (Open Source).
 
 Features
 --------

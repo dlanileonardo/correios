@@ -297,7 +297,7 @@ class correios extends CarrierModule {
         $getInCache = $this->getCache($hash);
 
         if ($getInCache) {
-            $result = $getInCache;
+            $return = $getInCache;
         } else {
             $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
             $method = "getPreco" . ucfirst(strtolower($this->_factory));
@@ -340,7 +340,10 @@ class correios extends CarrierModule {
         try {
             $client = new SoapClient($this->_urlWebservice);
             $result = $client->CalcPrazo($params);
-            return (integer) $result->CalcPrazoResult->Servicos->cServico->PrazoEntrega;
+            if (intval($result->CalcPrazoResult->Servicos->cServico->Erro) !== 0)
+                return false;
+            else
+                return (integer) $result->CalcPrazoResult->Servicos->cServico->PrazoEntrega;
         } catch (Exception $e) {
             return false;
         }

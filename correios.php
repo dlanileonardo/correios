@@ -15,6 +15,11 @@ class correios extends CarrierModule {
     private $_urlWebservice = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx?wsdl";
     private $_html = '';
     private $_postErrors = array();
+    private $_factorys = array(
+        "soapclient" => "SOAP Client",
+        "nusoap" => "NuSoap"
+    );
+    private $_factory = "soapclient";
     public $servicos_todos = array(
         '41106' => 'PAC',
         '40010' => 'SEDEX',
@@ -54,6 +59,9 @@ class correios extends CarrierModule {
         return true;
     }
 
+    /**
+     * 
+     */
     private function installCarriers() {
         $configBase = array(
             'id_tax_rules_group' => 0,
@@ -83,6 +91,11 @@ class correios extends CarrierModule {
         }
     }
 
+    /**
+     * 
+     * @param type $config
+     * @return boolean
+     */
     public function installExternalCarrier($config) {
         $check = Db::getInstance()->executeS("SELECT id_carrier FROM " . _DB_PREFIX_ . "carrier WHERE name = '" . $config['name'] . "' ");
         if (is_array($check) && !empty($check))
@@ -141,10 +154,13 @@ class correios extends CarrierModule {
             // Return ID Carrier
             return (int) ($carrier->id);
         }
-
         return false;
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public function uninstall() {
         // Uninstall Carriers
         $result = Db::getInstance()->autoExecute(_DB_PREFIX_ . 'carrier', array('deleted' => 1), 'UPDATE', ' name LIKE "Correios%" ');
@@ -158,6 +174,10 @@ class correios extends CarrierModule {
         return true;
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function getContent() {
         $output = '<h2>' . $this->displayName . '</h2>';
         if (Tools::isSubmit('submitcarrinho_correios')) {
@@ -166,10 +186,20 @@ class correios extends CarrierModule {
             $output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="' . $this->
                             l('Confirmation') . '" />' . $this->l('Settings updated') . '</div>';
         }
+        if (Tools::isSubmit('factory')) {
+            Configuration::updateValue('PS_CORREIOS_FACTORY', $_POST['factory']);
+
+            $output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="' . $this->
+                            l('Confirmation') . '" />' . $this->l('Settings updated') . '</div>';
+        }
 
         return $output . $this->displayForm();
     }
 
+    /**
+     * 
+     * @return type
+     */
     public function displayForm() {
         $conf = Configuration::getMultiple(array('PS_CORREIOS_CEP_ORIG'));
         $cep_orig = array_key_exists('cep', $_POST) ? $_POST['cep'] : (array_key_exists('PS_CORREIOS_CEP_ORIG', $conf) ? $conf['PS_CORREIOS_CEP_ORIG'] : '');
@@ -177,6 +207,12 @@ class correios extends CarrierModule {
         return $form_config;
     }
 
+    /**
+     * 
+     * @param type $params
+     * @param type $shipping_cost
+     * @return boolean
+     */
     public function getOrderShippingCost($params, $shipping_cost) {
         $carrier = new Carrier();
         $chave = Configuration::get("PS_CORREIOS_CARRIER_{$this->id_carrier}");
@@ -197,14 +233,29 @@ class correios extends CarrierModule {
         return $cutoFrete + $shipping_cost;
     }
 
+    /**
+     * 
+     * @param type $params
+     * @return type
+     */
     public function getOrderShippingCostExternal($params) {
         return $this->getOrderShippingCost($params, 0);
     }
 
+    /**
+     * 
+     * @param type $params
+     */
     public function hookupdateCarrier($params) {
         
     }
 
+    /**
+     * 
+     * @global type $smarty
+     * @param type $params
+     * @return type
+     */
     public function hookbeforeCarrier($params) {
         global $smarty;
         $address = new Address($params['cart']->id_address_delivery);
@@ -214,17 +265,20 @@ class correios extends CarrierModule {
         return $this->display(__file__, 'extra_carrier.tpl');
     }
 
+    /**
+     * 
+     * @param type $params
+     */
     public function hookextraCarrier($params) {
         
     }
 
+    /**
+     * 
+     * @param type $params
+     * @return type
+     */
     private function getPriceWebService($params) {
-        try {
-            $client = new SoapClient($this->_urlWebservice);
-        } catch (Exception $e) {
-            return false;
-        }
-
         $paramsBase = array(
             "nCdEmpresa" => "",
             "sDsSenha" => "",
@@ -239,26 +293,27 @@ class correios extends CarrierModule {
             "sCdAvisoRecebimento" => "N"
         );
         $params = array_merge($paramsBase, $params);
-
         $hash = ( implode("|", $params) );
-
         $getInCache = $this->getCache($hash);
 
         if ($getInCache) {
             $result = $getInCache;
         } else {
-            $result = $client->CalcPreco($params);
-            $this->setCache($hash, $result);
+            $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
+            $method = "getPreco" . ucfirst(strtolower($this->_factory));
+            $return = $this->$method($params, $hash);
+            $this->setCache($hash, $return);
         }
-
-        if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
-            $this->setCache($hash, false);
-            return false;
-        }
-        else
-            return (float) str_replace(",", ".", $result->CalcPrecoResult->Servicos->cServico->Valor);
+        return $return;
     }
 
+    /**
+     * 
+     * @global type $smarty
+     * @param type $idCarrier
+     * @param type $sCepDestino
+     * @return type
+     */
     public function getPrazoDeEntrega($idCarrier, $sCepDestino) {
         global $smarty;
         $Carrier = new Carrier($idCarrier);
@@ -269,13 +324,9 @@ class correios extends CarrierModule {
             "sCepDestino" => $sCepDestino,
         );
 
-        try {
-            $client = new SoapClient($this->_urlWebservice);
-            $result = $client->CalcPrazo($params);
-            $dias = (integer) $result->CalcPrazoResult->Servicos->cServico->PrazoEntrega;
-        } catch (Exception $e) {
-            $dias = false;
-        }
+        $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
+        $method = "getPrazo" . ucfirst(strtolower($this->_factory));
+        $dias = $this->$method($params);
 
         $smarty->assign(array(
             "nomeServico" => $Carrier->name,
@@ -285,15 +336,87 @@ class correios extends CarrierModule {
         return $this->display(__file__, 'prazo_de_entrega.tpl');
     }
 
+    private function getPrazoSoapclient($params) {
+        try {
+            $client = new SoapClient($this->_urlWebservice);
+            $result = $client->CalcPrazo($params);
+            return (integer) $result->CalcPrazoResult->Servicos->cServico->PrazoEntrega;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    private function getPrazoNusoap($params) {
+        require_once('lib/nusoap.php');
+        $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
+        $nusoap->setUseCURL(true);
+        $result = $nusoap->call("CalcPrazo", $params);
+        if (intval($result['CalcPrazoResult']['Servicos']['cServico']['Erro']) !== 0) {
+            return false;
+        } else {
+            return (integer) str_replace(",", ".", $result['CalcPrazoResult']['Servicos']['cServico']['PrazoEntrega']);
+        }
+    }
+
+    /**
+     * 
+     * @param type $name
+     * @param type $value
+     */
     private function setCache($name, $value) {
         if (_PS_CACHE_ENABLED_)
             Cache::getInstance()->setQuery($name, $value);
     }
 
+    /**
+     * 
+     * @param type $name
+     * @return boolean
+     */
     private function getCache($name) {
         if (_PS_CACHE_ENABLED_)
             return Cache::getInstance()->get(md5($name));
         return false;
+    }
+
+    /**
+     * 
+     * @param type $params
+     * @param type $hash
+     * @return boolean
+     */
+    private function getPrecoSoapclient($params, $hash) {
+        try {
+            $client = new SoapClient($this->_urlWebservice);
+        } catch (Exception $e) {
+            return false;
+        }
+        $result = $client->CalcPreco($params);
+        if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
+            $this->setCache($hash, false);
+            return false;
+        } else {
+            return (float) str_replace(",", ".", $result->CalcPrecoResult->Servicos->cServico->Valor);
+        }
+    }
+
+    /**
+     * 
+     * @param type $params
+     * @param type $hash
+     * @return boolean
+     */
+    private function getPrecoNusoap($params, $hash) {
+        require_once('lib/nusoap.php');
+        $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
+        $nusoap->setUseCURL(true);
+        $result = $nusoap->call("CalcPreco", $params);
+        if (intval($result['CalcPrecoResult']['Servicos']['cServico']['Erro']) !== 0) {
+            $this->setCache($hash, false);
+            return false;
+        } else {
+            return (float) str_replace(",", ".", $result['CalcPrecoResult']['Servicos']['cServico']['Valor']);
+        }
     }
 
 }

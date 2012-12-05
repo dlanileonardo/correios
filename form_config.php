@@ -13,10 +13,19 @@ $form_config = '
 			<div class="margin-form">
 			<input type="text" size="33" name="cep" value="' . $cep_orig . '" /> Ex. 99999999 </div>
 			<br />
-			<div class="margin-form">';
+			
+			<label>Método de Comunicação</label>			
+			<div class="margin-form">
+            
+    <select name="factory" />';
 
-$form_config .= '</div>			
+foreach ($this->_factorys as $key => $name)
+    $form_config .= "<option value='{$key}' >$name</option>";
+
+
+$form_config .= '</select></div>			
 			<center><input type="submit" name="submitcarrinho_correios" value="' . $this->l('Save') . '" class="button" /></center>
 			
 		</fieldset>		
 		</form>';
+?>

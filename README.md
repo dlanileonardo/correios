@@ -11,12 +11,13 @@ Features
 * Sistema de rastreio embutido;
 * Cache dos Requests para acelerar o carregamento;
 * Exibe o Prazo de Entrega do serviço selecionado.
+* Possibilidade de Alternar entre SOAPClient ou NuSOAP
 
 Requisitos
 ----------
 
 * PHP 5.3 (ou superior);
-* SOAP extension (http://www.php.net/manual/en/intro.soap.php);
+* SOAP extension (http://www.php.net/manual/en/intro.soap.php) (Recomendado);
 
 Dicas
 -----

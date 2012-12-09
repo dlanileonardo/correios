@@ -218,8 +218,10 @@ class correios extends CarrierModule {
         $chave = Configuration::get("PS_CORREIOS_CARRIER_{$this->id_carrier}");
         $address = new Address($params->id_address_delivery);
 
+        $sCepDestino = preg_replace("/([^0-9])/", "", $address->postcode);
+
         $paramsCorreios = array(
-            "sCepDestino" => $address->postcode,
+            "sCepDestino" => $sCepDestino,
             "nVlPeso" => (string) $params->getTotalWeight(),
             "nCdServico" => $chave,
         );

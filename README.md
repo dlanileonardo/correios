@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dlanileonardo/correios.png)](https://travis-ci.org/dlanileonardo/correios)
+
 Módulo Correios
 ===============
 

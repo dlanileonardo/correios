@@ -1,7 +1,0 @@
-<phpunit>
-	<testsuites>
-		<testsuite name="Correios">
-			<file>tests/correios.php</file>
-		</testsuite>
-	</testsuites>
-</phpunit>

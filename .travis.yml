@@ -1,7 +1,5 @@
 language: php
 php:
-  - 5.5
-  - 5.4
+  - 5.2
   - 5.3
-
-script: phpunit -c tests.xml
+  - 5.4

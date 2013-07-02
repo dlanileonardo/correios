@@ -1,8 +1,8 @@
 <?php
 
-require_once "tests/vendors/Need.php";
-require_once "tests/vendors/ObjectModel.php";
-require_once "tests/vendors/Language.php";
-require_once "tests/vendors/Configuration.php";
-require_once "tests/vendors/Tools.php";
+defined("_PS_VERSION_") ? "" : define("_PS_VERSION_", 1);
+
+include_once('AutoLoader.php');
+AutoLoader::registerDirectory('tests/vendors/');
+
 require_once "correios.php";

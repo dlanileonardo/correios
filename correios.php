@@ -227,12 +227,12 @@ class correios extends CarrierModule {
         );
 
         $this->getPriceWebService($paramsCorreios);
-        $cutoFrete = $this->getPriceWebService($paramsCorreios);
+        $custoFrete = $this->getPriceWebService($paramsCorreios);
 
-        if ($cutoFrete === false || $cutoFrete === 0.0)
+        if ($custoFrete === false || $custoFrete === 0.0)
             return false;
 
-        return $cutoFrete + $shipping_cost;
+        return $custoFrete + $shipping_cost;
     }
 
     /**

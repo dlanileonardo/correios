@@ -113,6 +113,15 @@ class Configuration extends ObjectModel
       */
     public static function get($key, $id_lang = NULL)
     {
+      if ( $key === "PS_CORREIOS_FACTORY" )
+        return "Soapclient";
+
+      if ( $key === "PS_CORREIOS_CARRIER_1" )
+        return "41106";
+
+      if( $key === "PS_CORREIOS_CEP_ORIG" )
+        return "13902100";
+
         if ($id_lang AND isset(self::$_CONF_LANG[(int)$id_lang][$key]))
             return self::$_CONF_LANG[(int)$id_lang][$key];
         elseif (is_array(self::$_CONF) AND key_exists($key, self::$_CONF))
@@ -164,6 +173,8 @@ class Configuration extends ObjectModel
       */
     public static function getMultiple($keys, $id_lang = NULL)
     {
+      return array();
+
         if (!is_array($keys) OR !is_array(self::$_CONF) OR ($id_lang AND !is_array(self::$_CONF_LANG)))
             die(Tools::displayError());
 

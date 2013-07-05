@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/dlanileonardo/correios.png)](https://travis-ci.org/dlanileonardo/correios)
 [![Coverage Status](https://coveralls.io/repos/dlanileonardo/correios/badge.png)](https://coveralls.io/r/dlanileonardo/correios)
+[![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
 
 Módulo Correios
 ===============

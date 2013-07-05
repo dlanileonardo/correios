@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f0bc7dd864fa98abe034cf0dde9eaa93",
+    "hash": "4f45de2d6df46628e7fc14833b19c066",
     "packages": [
 
     ],
@@ -140,20 +140,19 @@
         },
         {
             "name": "satooshi/php-coveralls",
-            "version": "v0.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/satooshi/php-coveralls.git",
-                "reference": "v0.6.0"
+                "reference": "a6eaac8145af484f73aaa6a086e459b62e99568e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/v0.6.0",
-                "reference": "v0.6.0",
+                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/a6eaac8145af484f73aaa6a086e459b62e99568e",
+                "reference": "a6eaac8145af484f73aaa6a086e459b62e99568e",
                 "shasum": ""
             },
             "require": {
-                "ext-curl": "*",
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "guzzle/guzzle": ">=3.0",
@@ -175,14 +174,17 @@
                 "squizlabs/php_codesniffer": "1.4.*@stable",
                 "theseer/fdomdocument": "dev-master"
             },
+            "suggest": {
+                "symfony/http-kernel": "Allows Symfony integration"
+            },
             "bin": [
                 "composer/bin/coveralls"
             ],
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Contrib\\Component": "src/",
-                    "Contrib\\Bundle": "src/"
+                    "Satooshi\\Component": "src/",
+                    "Satooshi\\Bundle": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -204,7 +206,7 @@
                 "github",
                 "test"
             ],
-            "time": "2013-05-03 14:17:03"
+            "time": "2013-06-21 13:22:27"
         },
         {
             "name": "symfony/config",
@@ -507,9 +509,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "satooshi/php-coveralls": 20
+    },
     "platform": [
 
     ],

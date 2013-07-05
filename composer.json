@@ -5,6 +5,7 @@
     "homepage": "http://dlanileonardo.github.io/correios/",
     "type": "library",
     "license": "MIT",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Odlanier Mendes",

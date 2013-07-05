@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "979a47286e6f47d072174523ffff58b7",
+    "hash": "f0bc7dd864fa98abe034cf0dde9eaa93",
     "packages": [
 
     ],
@@ -140,19 +140,20 @@
         },
         {
             "name": "satooshi/php-coveralls",
-            "version": "dev-master",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/satooshi/php-coveralls.git",
-                "reference": "a6eaac8145af484f73aaa6a086e459b62e99568e"
+                "reference": "v0.6.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/a6eaac8145af484f73aaa6a086e459b62e99568e",
-                "reference": "a6eaac8145af484f73aaa6a086e459b62e99568e",
+                "url": "https://api.github.com/repos/satooshi/php-coveralls/zipball/v0.6.0",
+                "reference": "v0.6.0",
                 "shasum": ""
             },
             "require": {
+                "ext-curl": "*",
                 "ext-json": "*",
                 "ext-simplexml": "*",
                 "guzzle/guzzle": ">=3.0",
@@ -174,17 +175,14 @@
                 "squizlabs/php_codesniffer": "1.4.*@stable",
                 "theseer/fdomdocument": "dev-master"
             },
-            "suggest": {
-                "symfony/http-kernel": "Allows Symfony integration"
-            },
             "bin": [
                 "composer/bin/coveralls"
             ],
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Satooshi\\Component": "src/",
-                    "Satooshi\\Bundle": "src/"
+                    "Contrib\\Component": "src/",
+                    "Contrib\\Bundle": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -206,26 +204,7 @@
                 "github",
                 "test"
             ],
-            "time": "2013-06-21 13:22:27"
-        },
-        {
-            "name": "sebastianbergmann/phpcov",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpcov.git",
-                "reference": "1.1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/sebastianbergmann/phpcov/archive/1.1.0.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "bin": [
-                "phpcov.php"
-            ],
-            "type": "library"
+            "time": "2013-05-03 14:17:03"
         },
         {
             "name": "symfony/config",
@@ -528,9 +507,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "satooshi/php-coveralls": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],

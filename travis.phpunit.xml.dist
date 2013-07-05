@@ -15,6 +15,17 @@
             <file>tests/correiosTest.php</file>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./build</directory>
+                <directory>./tests</directory>
+                <directory>./travis</directory>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
     <logging>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
         <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>

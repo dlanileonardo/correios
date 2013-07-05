@@ -2,6 +2,9 @@
 [![Coverage Status](https://coveralls.io/repos/dlanileonardo/correios/badge.png)](https://coveralls.io/r/dlanileonardo/correios)
 [![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
 
+[![Latest Stable Version](https://poser.pugx.org/dlanileonardo/correios/v/stable.png)](https://packagist.org/packages/dlanileonardo/correios)
+[![Latest Unstable Version](https://poser.pugx.org/dlanileonardo/correios/v/unstable.png)](https://packagist.org/packages/dlanileonardo/correios)
+
 Módulo Correios
 ===============
 

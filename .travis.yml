@@ -1,9 +1,9 @@
 language: php
 
 php:
-    - 5.3
-    - 5.4
     - 5.5
+    - 5.4
+    - 5.3
 
 before_script:
     - wget http://getcomposer.org/composer.phar
@@ -12,6 +12,14 @@ before_script:
 script:
     - mkdir -p build/logs
     - phpunit --coverage-clover build/logs/clover.xml
+    - php vendor/bin/phpunit -c travis.phpunit.xml
 
 after_script:
-    - php vendor/bin/coveralls
+    - curl -s https://gist.github.com/satooshi/4750401/raw > travis/ColorCLI.php
+    - curl -s https://gist.github.com/satooshi/4752226/raw > travis/junit.php
+    - curl -s https://gist.github.com/satooshi/4958593/raw > travis/pmd.php
+    - curl -s https://gist.github.com/satooshi/4958909/raw > travis/checkstyle.php
+    - php travis/checkstyle.php
+    - php travis/pmd.php
+    - php travis/junit.php
+    - php composer/bin/coveralls -v --exclude-no-stmt

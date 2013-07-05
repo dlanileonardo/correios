@@ -2,7 +2,7 @@
 
 <phpunit colors="true" bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite name="correiosTest">
+        <testsuite name="Teste do módulo dos Correios">
             <file>tests/correiosTest.php</file>
         </testsuite>
     </testsuites>

@@ -1,24 +1,22 @@
 language: php
 php:
-	- 5.2
-	- 5.3
-	- 5.4
+    - 5.2
+    - 5.3
+    - 5.4
 
 matrix:
 allow_failures:
-	- php: 5.5
+    - php: 5.5
 
 before_script:
-	- curl -s http://getcomposer.org/installer | php
-	- php composer.phar install --dev --no-interaction
+    - curl -s http://getcomposer.org/installer | php
+    - php composer.phar install --dev --no-interaction
 
 script:
-	- mkdir -p build/logs
-	- mkdir -p build/cov
-	# - php vendor/bin/phpunit -c phpunit.xml.dist
-	- phpunit -c phpunit.xml.dist
+    - mkdir -p build/logs
+    - mkdir -p build/cov
+    - phpunit -c phpunit.xml.dist
 
 after_script:
-	- php vendor/bin/coveralls
-	# or enable logging
-	- php vendor/bin/coveralls -v
+    - php vendor/bin/coveralls
+    - php vendor/bin/coveralls -v

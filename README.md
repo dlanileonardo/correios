@@ -3,6 +3,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
 [![Latest Stable Version](https://poser.pugx.org/dlanileonardo/correios/v/stable.png)](https://packagist.org/packages/dlanileonardo/correios)
 [![Latest Unstable Version](https://poser.pugx.org/dlanileonardo/correios/v/unstable.png)](https://packagist.org/packages/dlanileonardo/correios)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/dlanileonardo/correios/badges/quality-score.png?s=436c76983e47b2538c72f28e6fd092356061c0ac)](https://scrutinizer-ci.com/g/dlanileonardo/correios/)
 
 Módulo Correios
 ===============

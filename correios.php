@@ -352,7 +352,7 @@ class correios extends CarrierModule {
     }
 
     private function getPrazoNusoap($params) {
-        require_once('lib/nusoap.php');
+        require_once('vendor/lib/nusoap.php');
         $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
         $nusoap->setUseCURL(true);
         $result = $nusoap->call("CalcPrazo", $params);
@@ -412,7 +412,7 @@ class correios extends CarrierModule {
      * @return boolean
      */
     private function getPrecoNusoap($params, $hash) {
-        require_once('lib/nusoap.php');
+        require_once('vendor/lib/nusoap.php');
         $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
         $nusoap->setUseCURL(true);
         $result = $nusoap->call("CalcPreco", $params);

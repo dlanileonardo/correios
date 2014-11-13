@@ -42,3 +42,7 @@ Isenção de Responsabilidade
 Este software é gratuito e não está associado com os Correios. 
 Correios é uma empresa e esse módulo é independente não afiliado com a mesma portanto não é 
 um produto oficial.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dlanileonardo/correios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

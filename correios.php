@@ -148,7 +148,7 @@ class correios extends CarrierModule {
             Configuration::updateValue("PS_CORREIOS_CARRIER_{$carrier->id}", $config['cod_servico']);
 
             // Copy Logo
-            if (!copy(dirname(__FILE__) . '/logos/' . $config['cod_servico'] . '.png', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
+            if (!copy(dirname(__FILE__) . '/logos_servicos/' . $config['cod_servico'] . '.jpg', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
                 return false;
 
             // Return ID Carrier

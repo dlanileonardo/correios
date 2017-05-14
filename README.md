@@ -1,8 +1,6 @@
 [![Build Status](https://travis-ci.org/XRSites/correios.png)](https://travis-ci.org/XRSites/correios)
 [![Coverage Status](https://coveralls.io/repos/XRSites/correios/badge.png)](https://coveralls.io/r/XRSites/correios)
 [![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
-[![Latest Stable Version](https://poser.pugx.org/XRSites/correios/v/stable.png)](https://packagist.org/packages/XRSites/correios)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/XRSites/correios/badges/quality-score.png?s=436c76983e47b2538c72f28e6fd092356061c0ac)](https://scrutinizer-ci.com/g/XRSites/correios/)
 
 Módulo Correios
 ===============
@@ -42,7 +40,4 @@ Isenção de Responsabilidade
 Este software é gratuito e não está associado com os Correios. 
 Correios é uma empresa e esse módulo é independente não afiliado com a mesma portanto não é 
 um produto oficial.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/XRSites/correios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

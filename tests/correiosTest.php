@@ -25,8 +25,7 @@ class correiosTest extends PHPUnit_Framework_TestCase {
         $params = new Params();
         $shipping_cost = 10;
         $frete = $correios->getOrderShippingCost($params, $shipping_cost);
-		print "Expected Shipping Cost: " . $frete;
-		print "Shipping Cost: " . $frete;
+		print "Shipping Cost: [$frete]\n";
         $this->assertEquals(24.8, $frete);
     }
 

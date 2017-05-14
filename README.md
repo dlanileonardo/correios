@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/dlanileonardo/correios.png)](https://travis-ci.org/dlanileonardo/correios)
-[![Coverage Status](https://coveralls.io/repos/dlanileonardo/correios/badge.png)](https://coveralls.io/r/dlanileonardo/correios)
+[![Build Status](https://travis-ci.org/XRSites/correios.png)](https://travis-ci.org/XRSites/correios)
+[![Coverage Status](https://coveralls.io/repos/XRSites/correios/badge.png)](https://coveralls.io/r/XRSites/correios)
 [![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
-[![Latest Stable Version](https://poser.pugx.org/dlanileonardo/correios/v/stable.png)](https://packagist.org/packages/dlanileonardo/correios)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/dlanileonardo/correios/badges/quality-score.png?s=436c76983e47b2538c72f28e6fd092356061c0ac)](https://scrutinizer-ci.com/g/dlanileonardo/correios/)
+[![Latest Stable Version](https://poser.pugx.org/XRSites/correios/v/stable.png)](https://packagist.org/packages/XRSites/correios)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/XRSites/correios/badges/quality-score.png?s=436c76983e47b2538c72f28e6fd092356061c0ac)](https://scrutinizer-ci.com/g/XRSites/correios/)
 
 Módulo Correios
 ===============
@@ -44,5 +44,5 @@ Correios é uma empresa e esse módulo é independente não afiliado com a mesma
 um produto oficial.
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dlanileonardo/correios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/XRSites/correios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

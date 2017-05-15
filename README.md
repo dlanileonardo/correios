@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/XRSites/correios.png)](https://travis-ci.org/XRSites/correios)
 [![Coverage Status](https://coveralls.io/repos/XRSites/correios/badge.png)](https://coveralls.io/r/XRSites/correios)
 [![Dependency Status](https://www.versioneye.com/user/projects/5918cec5eb858e0051b5966b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5918cec5eb858e0051b5966b)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/XRSites/correios/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/XRSites/correios/?branch=master)
 
 Módulo Correios
 ===============

@@ -398,7 +398,7 @@ class correios extends CarrierModule {
             return false;
         }
         $result = $client->CalcPreco($params);
-        var_dump ($result);
+        # var_dump ($result);
         if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
             $this->setCache($hash, false);
             return false;

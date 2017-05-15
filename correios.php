@@ -21,8 +21,8 @@ class correios extends CarrierModule {
     );
     private $_factory = "soapclient";
     public $servicos_todos = array(
-        '41106' => 'PAC',
-        '40010' => 'SEDEX',
+        '04510' => 'PAC',# era '41106' => 'PAC',
+        '04014' => 'SEDEX', # era '40010' => 'SEDEX',
         '40215' => 'SEDEX 10',
         '40290' => 'SEDEX HOJE',
             //'81019' => 'E-SEDEX', 
@@ -303,6 +303,7 @@ class correios extends CarrierModule {
         } else {
             $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
             $method = "getPreco" . ucfirst(strtolower($this->_factory));
+            
             $return = $this->$method($params, $hash);
             $this->setCache($hash, $return);
         }
@@ -397,6 +398,7 @@ class correios extends CarrierModule {
             return false;
         }
         $result = $client->CalcPreco($params);
+        var_dump ($result);
         if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
             $this->setCache($hash, false);
             return false;

@@ -9,7 +9,7 @@ class Configuration extends ObjectModel
         return "Soapclient";
 
       if ( $key === "PS_CORREIOS_CARRIER_1" )
-        return "41106";
+        return "04510";
 
       if( $key === "PS_CORREIOS_CEP_ORIG" )
         return "13902100";

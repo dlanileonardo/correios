@@ -21,8 +21,8 @@ class correios extends CarrierModule {
     );
     private $_factory = "soapclient";
     public $servicos_todos = array(
-        '41106' => 'PAC',
-        '40010' => 'SEDEX',
+        '04510' => 'PAC',
+        '04014' => 'SEDEX',
         '40215' => 'SEDEX 10',
         '40290' => 'SEDEX HOJE',
             //'81019' => 'E-SEDEX', 

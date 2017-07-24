@@ -1,3 +1,4 @@
+
 <?php
 
 /** MODULO ADAPTADO POR ODLANIER
@@ -21,8 +22,8 @@ class correios extends CarrierModule {
     );
     private $_factory = "soapclient";
     public $servicos_todos = array(
-        '04510' => 'PAC',
-        '04014' => 'SEDEX',
+        '04510' => 'PAC',# era '41106' => 'PAC',
+        '04014' => 'SEDEX', # era '40010' => 'SEDEX',
         '40215' => 'SEDEX 10',
         '40290' => 'SEDEX HOJE',
             //'81019' => 'E-SEDEX', 
@@ -148,7 +149,7 @@ class correios extends CarrierModule {
             Configuration::updateValue("PS_CORREIOS_CARRIER_{$carrier->id}", $config['cod_servico']);
 
             // Copy Logo
-            if (!copy(dirname(__FILE__) . '/logos_servicos/' . $config['cod_servico'] . '.jpg', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
+            if (!copy(dirname(__FILE__) . '/logos/' . $config['cod_servico'] . '.png', _PS_SHIP_IMG_DIR_ . '/' . (int) $carrier->id . '.jpg'))
                 return false;
 
             // Return ID Carrier
@@ -303,6 +304,7 @@ class correios extends CarrierModule {
         } else {
             $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
             $method = "getPreco" . ucfirst(strtolower($this->_factory));
+            
             $return = $this->$method($params, $hash);
             $this->setCache($hash, $return);
         }
@@ -397,6 +399,7 @@ class correios extends CarrierModule {
             return false;
         }
         $result = $client->CalcPreco($params);
+        # var_dump ($result);
         if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
             $this->setCache($hash, false);
             return false;

@@ -2,6 +2,7 @@
 
 class Address {
     
-    public $postcode = "27525164";
+    # av brasil SP/SP
+    public $postcode = "01430000";
 
 }

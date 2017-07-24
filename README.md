@@ -1,8 +1,7 @@
-[![Build Status](https://travis-ci.org/dlanileonardo/correios.png)](https://travis-ci.org/dlanileonardo/correios)
-[![Coverage Status](https://coveralls.io/repos/dlanileonardo/correios/badge.png)](https://coveralls.io/r/dlanileonardo/correios)
-[![Dependency Status](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec/badge.png)](https://www.versioneye.com/user/projects/51d658e5586cef000200ddec)
-[![Latest Stable Version](https://poser.pugx.org/dlanileonardo/correios/v/stable.png)](https://packagist.org/packages/dlanileonardo/correios)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/dlanileonardo/correios/badges/quality-score.png?s=436c76983e47b2538c72f28e6fd092356061c0ac)](https://scrutinizer-ci.com/g/dlanileonardo/correios/)
+[![Build Status](https://travis-ci.org/XRSites/correios.png)](https://travis-ci.org/XRSites/correios)
+[![Code Coverage](https://scrutinizer-ci.com/g/XRSites/correios/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/XRSites/correios/?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/5918cec5eb858e0051b5966b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5918cec5eb858e0051b5966b)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/XRSites/correios/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/XRSites/correios/?branch=master)
 
 Módulo Correios
 ===============
@@ -42,7 +41,4 @@ Isenção de Responsabilidade
 Este software é gratuito e não está associado com os Correios. 
 Correios é uma empresa e esse módulo é independente não afiliado com a mesma portanto não é 
 um produto oficial.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dlanileonardo/correios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

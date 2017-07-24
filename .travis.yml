@@ -1,6 +1,7 @@
 language: php
 
 php:
+    - 5.6
     - 5.5
     - 5.4
     - 5.3
@@ -9,13 +10,13 @@ matrix:
   allow_failures:
     - php: 5.5
 
-before_script:
-    - wget http://getcomposer.org/composer.phar
-    - php composer.phar install --dev --no-interaction
+#before_script:
+    # - wget http://getcomposer.org/composer.phar
+    # - php composer.phar install --dev --no-interaction
 
 script:
     - mkdir -p build/logs
-    - php vendor/bin/phpunit -c travis.phpunit.xml.dist
+    - phpunit -c travis.phpunit.xml.dist
 
 after_script:
     # - wget https://gist.github.com/satooshi/4750401/raw > travis/ColorCLI.php

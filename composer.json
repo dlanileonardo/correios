@@ -12,6 +12,12 @@
             "email": "dlani@dlani.com.br",
             "homepage": "http://www.dlani.com.br",
             "role": "Developer"
+        },
+        {
+            "name": "XRSites",
+            "email": "info@xrsites.com.br",
+            "homepage": "http://www.xrs.com.br",
+            "role": "Developer"
         }
     ],
     "require": {

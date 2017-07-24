@@ -18,12 +18,12 @@ class correiosTest extends PHPUnit_Framework_TestCase {
 
     public function testGetOrderShippingCostSEDEXHoje()
     {
-        $this->testGetOrderShppingCost("4", 10, 33);
+        $this->testGetOrderShppingCost("4", 10, 34.600000000000001);
     }
 
     public function testGetOrderShippingCostSEDEX10()
     {
-        $this->testGetOrderShppingCost("3", 10, 27.799999999999997);
+        $this->testGetOrderShppingCost("3", 10, 29.200000000000003);
     }
 
     public function testGetOrderShippingCostSEDEX()

@@ -1,4 +1,3 @@
-
 <?php
 
 /** MODULO ADAPTADO POR ODLANIER
@@ -22,8 +21,8 @@ class correios extends CarrierModule {
     );
     private $_factory = "soapclient";
     public $servicos_todos = array(
-        '04510' => 'PAC',# era '41106' => 'PAC',
-        '04014' => 'SEDEX', # era '40010' => 'SEDEX',
+        '41106' => 'PAC',
+        '40010' => 'SEDEX',
         '40215' => 'SEDEX 10',
         '40290' => 'SEDEX HOJE',
             //'81019' => 'E-SEDEX', 
@@ -228,12 +227,12 @@ class correios extends CarrierModule {
         );
 
         $this->getPriceWebService($paramsCorreios);
-        $custoFrete = $this->getPriceWebService($paramsCorreios);
+        $cutoFrete = $this->getPriceWebService($paramsCorreios);
 
-        if ($custoFrete === false || $custoFrete === 0.0)
+        if ($cutoFrete === false || $cutoFrete === 0.0)
             return false;
 
-        return $custoFrete + $shipping_cost;
+        return $cutoFrete + $shipping_cost;
     }
 
     /**
@@ -304,7 +303,6 @@ class correios extends CarrierModule {
         } else {
             $this->_factory = Configuration::get("PS_CORREIOS_FACTORY");
             $method = "getPreco" . ucfirst(strtolower($this->_factory));
-            
             $return = $this->$method($params, $hash);
             $this->setCache($hash, $return);
         }
@@ -354,7 +352,7 @@ class correios extends CarrierModule {
     }
 
     private function getPrazoNusoap($params) {
-        require_once('vendor/lib/nusoap.php');
+        require_once('lib/nusoap.php');
         $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
         $nusoap->setUseCURL(true);
         $result = $nusoap->call("CalcPrazo", $params);
@@ -395,11 +393,10 @@ class correios extends CarrierModule {
     private function getPrecoSoapclient($params, $hash) {
         try {
             $client = new SoapClient($this->_urlWebservice);
+            $result = $client->CalcPreco($params);
         } catch (Exception $e) {
             return false;
         }
-        $result = $client->CalcPreco($params);
-        # var_dump ($result);
         if (intval($result->CalcPrecoResult->Servicos->cServico->Erro) !== 0) {
             $this->setCache($hash, false);
             return false;
@@ -415,7 +412,7 @@ class correios extends CarrierModule {
      * @return boolean
      */
     private function getPrecoNusoap($params, $hash) {
-        require_once('vendor/lib/nusoap.php');
+        require_once('lib/nusoap.php');
         $nusoap = new nusoap_client($this->_urlWebservice, 'wsdl');
         $nusoap->setUseCURL(true);
         $result = $nusoap->call("CalcPreco", $params);

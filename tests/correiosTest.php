@@ -31,7 +31,7 @@ class correiosTest extends PHPUnit_Framework_TestCase {
         $this->testGetOrderShppingCost("2", 10, 21.199999999999999);
     }
 
-    public function testGetOrderShppingCost($id_carrier = "1", $shipping_cost = 10, $expected_value = 16.1)
+    public function testGetOrderShppingCost($id_carrier = "1", $shipping_cost = 10, $expected_value = 19.8)
     {
         $correios = new correios();
         $correios->id_carrier = $id_carrier;
